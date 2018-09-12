@@ -15,6 +15,7 @@
 		E3C9CDA821473D2A0010A506 /* StarWarsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C9CDA721473D2A0010A506 /* StarWarsUITests.swift */; };
 		E3C9CDB6214743450010A506 /* PeopleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C9CDB5214743450010A506 /* PeopleViewController.swift */; };
 		E3C9CE0C2148B6A20010A506 /* FilmsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C9CE0B2148B6A20010A506 /* FilmsViewController.swift */; };
+		E3C9CE0E2148B9670010A506 /* StarWarsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C9CE0D2148B9670010A506 /* StarWarsModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		E3C9CDA921473D2A0010A506 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E3C9CDB5214743450010A506 /* PeopleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleViewController.swift; sourceTree = "<group>"; };
 		E3C9CE0B2148B6A20010A506 /* FilmsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmsViewController.swift; sourceTree = "<group>"; };
+		E3C9CE0D2148B9670010A506 /* StarWarsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarWarsModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 				E3C9CDB5214743450010A506 /* PeopleViewController.swift */,
 				E3C9CD8B21473D2A0010A506 /* Main.storyboard */,
 				E3C9CE0B2148B6A20010A506 /* FilmsViewController.swift */,
+				E3C9CE0D2148B9670010A506 /* StarWarsModel.swift */,
 				E3C9CD8E21473D2A0010A506 /* Assets.xcassets */,
 				E3C9CD9021473D2A0010A506 /* LaunchScreen.storyboard */,
 				E3C9CD9321473D2A0010A506 /* Info.plist */,
@@ -261,6 +264,7 @@
 			files = (
 				E3C9CE0C2148B6A20010A506 /* FilmsViewController.swift in Sources */,
 				E3C9CD8821473D290010A506 /* AppDelegate.swift in Sources */,
+				E3C9CE0E2148B9670010A506 /* StarWarsModel.swift in Sources */,
 				E3C9CDB6214743450010A506 /* PeopleViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

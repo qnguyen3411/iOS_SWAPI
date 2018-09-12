@@ -13,45 +13,44 @@ class PeopleViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        getAllPeople(startingFromUrl: "https://swapi.co/api/people")
+        StarWarsModel.getAllPeople(startingFromUrl: "https://swapi.co/api/people",
+                                   completionHandler: getPeopleRecursive)
     }
     
-    
-    func getAllPeople(startingFromUrl urlString:String) {
-        print("GETTING PEOPLE FROM URL \(urlString)")
-        let url = URL(string: urlString)
-        let session = URLSession.shared
-        let task = session.dataTask(with: url!, completionHandler: { data, response, error in
-            do {
-                // try converting the JSON object to "Foundation Types" (NSDictionary, NSArray, NSString, etc.)
-                if let jsonResult = try JSONSerialization.jsonObject(
-                        with: data!,
-                        options: .mutableContainers
-                        ) as? NSDictionary {
-                    
-                    if let nextUrl = jsonResult.value(forKey: "next") as? NSString {
-                        DispatchQueue.main.async { [unowned self] in
-                            self.getAllPeople(startingFromUrl: nextUrl as String)
-                        }
-                    }
-                    
-                    if let results = jsonResult["results"] {
-                        let resultsArray = results as! NSArray
-                        for person in resultsArray {
-                            if let person = person as? NSDictionary{
-                                self.people.append(person.value(forKey: "name") as! String)
-                                DispatchQueue.main.async { [unowned self] in
-                                    self.tableView.reloadData()
-                                }
-                            }
-                        }
+    func getPeopleRecursive(_ data: Data?, _ response: URLResponse?, _ error: Error?) {
+        do {
+            // try converting the JSON object to "Foundation Types" (NSDictionary, NSArray, NSString, etc.)
+            if let jsonResult = try JSONSerialization.jsonObject(
+                with: data!,
+                options: .mutableContainers
+                ) as? NSDictionary {
+                
+                if let nextUrl = jsonResult.value(forKey: "next") as? NSString {
+                    DispatchQueue.main.async { [unowned self] in
+                        StarWarsModel.getAllPeople(startingFromUrl: nextUrl as String,
+                                                   completionHandler: self.getPeopleRecursive)
                     }
                 }
-            } catch let err {
-                print(err)
+                
+                if let results = jsonResult["results"] {
+                    let resultsArray = results as! NSArray
+                    self.loadPeopleArrWithResults(from: resultsArray)
+                }
             }
-        })
-        task.resume()
+        } catch let err {
+            print(err)
+        }
+    }
+    
+    func loadPeopleArrWithResults(from results: NSArray) {
+        for person in results {
+            if let person = person as? NSDictionary{
+                self.people.append(person.value(forKey: "name") as! String)
+                DispatchQueue.main.async { [unowned self] in
+                    self.tableView.reloadData()
+                }
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {

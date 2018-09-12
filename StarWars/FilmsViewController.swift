@@ -11,9 +11,7 @@ import UIKit
 class FilmsViewController: UITableViewController {
     var films:[String] = []
     override func viewDidLoad() {
-        let url = URL(string: "https://swapi.co/api/films/")
-        let session = URLSession.shared
-        let task = session.dataTask(with: url!, completionHandler: { data, response, error in
+        StarWarsModel.getAllFilms(){ data, response, error in
             do {
                 // try converting the JSON object to "Foundation Types" (NSDictionary, NSArray, NSString, etc.)
                 if let jsonResult = try JSONSerialization.jsonObject(
@@ -21,7 +19,6 @@ class FilmsViewController: UITableViewController {
                     options: .mutableContainers
                     ) as? NSDictionary {
                     
-
                     if let results = jsonResult["results"] {
                         let resultsArray = results as! NSArray
                         for film in resultsArray {
@@ -37,8 +34,7 @@ class FilmsViewController: UITableViewController {
             } catch let err {
                 print(err)
             }
-        })
-        task.resume()
+        }
         
         super.viewDidLoad()
     }
